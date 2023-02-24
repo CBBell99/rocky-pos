@@ -1,20 +1,23 @@
+import Navbar from "./components/Navbar";
 import "./App.scss";
 import { seatingTables } from "./assets/data/dummyData";
 
 function App() {
-  console.log(seatingTables);
-
   return (
     <main>
-      <h1>Rocky POS</h1>
-
+      <Navbar />
       <section>
-        <h2>Select table</h2>
-        {seatingTables.map(table => (
-          <div className="table" key={table.table_id}>
-            {table.table_id}
-          </div>
-        ))}
+        <h2>Select a table</h2>
+        <aside>
+          <h3>kitchen</h3>
+        </aside>
+        <article className="floor-map">
+          {seatingTables.map(table => (
+            <div className="table" key={table.table_id}>
+              TABLE {table.table_id}
+            </div>
+          ))}
+        </article>
       </section>
     </main>
   );
