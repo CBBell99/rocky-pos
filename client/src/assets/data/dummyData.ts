@@ -1,4 +1,15 @@
-const seatingTables = [
+interface Table {
+  table_id: number;
+  available_seats: number;
+}
+
+interface MenuItems {
+  id: number;
+  name: string;
+  category: string;
+}
+
+const seatingTables: Table[] = [
   {
     table_id: 1,
     available_seats: 4,
@@ -39,102 +50,102 @@ const seatingTables = [
 
 const menuItems = [
   {
-    menu_id: 1,
+    id: 1,
     name: "pork chop",
     category: "lunch",
   },
   {
-    menu_id: 2,
+    id: 2,
     name: "power bowl",
     category: "lunch",
   },
   {
-    menu_id: 3,
+    id: 3,
     name: "short rib",
     category: "lunch",
   },
   {
-    menu_id: 4,
+    id: 4,
     name: "steak",
     category: "lunch",
   },
   {
-    menu_id: 5,
+    id: 5,
     name: "salmon",
     category: "lunch",
   },
   {
-    menu_id: 6,
+    id: 6,
     name: "chicken",
     category: "lunch",
   },
   {
-    menu_id: 7,
+    id: 7,
     name: "risotto",
     category: "lunch",
   },
   {
-    menu_id: 8,
+    id: 8,
     name: "udon bowl",
     category: "lunch",
   },
   {
-    menu_id: 9,
+    id: 9,
     name: "udon bowl",
     category: "lunch",
   },
   {
-    menu_id: 10,
+    id: 10,
     name: "souffle",
     category: "breakfast",
   },
   {
-    menu_id: 11,
+    id: 11,
     name: "eggs benedict",
     category: "breakfast",
   },
   {
-    menu_id: 12,
+    id: 12,
     name: "skillet",
     category: "breakfast",
   },
   {
-    menu_id: 13,
+    id: 13,
     name: "pancakes",
     category: "breakfast",
   },
   {
-    menu_id: 14,
+    id: 14,
     name: "scramble",
     category: "breakfast",
   },
   {
-    menu_id: 15,
+    id: 15,
     name: "parfait",
     category: "breakfast",
   },
   {
-    menu_id: 16,
+    id: 16,
     name: "avocado toast",
     category: "breakfast",
   },
   {
-    menu_id: 17,
+    id: 17,
     name: "oatmeal",
     category: "breakfast",
   },
   {
-    menu_id: 18,
+    id: 18,
     name: "souffle",
     category: "breakfast",
   },
   {
-    menu_id: 19,
+    id: 19,
     name: "burger",
     category: "lunch",
   },
   {
-    menu_id: 20,
+    id: 20,
     name: "pasta",
     category: "lunch",
   },

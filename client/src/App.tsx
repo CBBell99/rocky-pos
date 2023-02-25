@@ -8,16 +8,17 @@ function App() {
       <Navbar />
       <section>
         <h2>Select a table</h2>
-        <aside>
+
+        <div className="container">
           <h3>kitchen</h3>
-        </aside>
-        <article className="floor-map">
-          {seatingTables.map(table => (
-            <div className="table" key={table.table_id}>
-              TABLE {table.table_id}
-            </div>
-          ))}
-        </article>
+          <article className="floor-map">
+            {seatingTables.map(table => (
+              <div className="table" key={table.table_id}>
+                TABLE {table.table_id}
+              </div>
+            ))}
+          </article>
+        </div>
       </section>
     </main>
   );

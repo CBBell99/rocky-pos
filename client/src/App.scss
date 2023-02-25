@@ -1,3 +1,7 @@
+.container {
+  display: flex;
+}
+
 .floor-map {
   display: grid;
   grid-template-columns: repeat(5, 6rem ); 
