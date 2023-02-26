@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+}
+
+.floor-map {
+  display: grid;
+  grid-template-columns: repeat(5, 6rem ); 
+  grid-template-rows: repeat(2, 6rem);
+  grid-gap: 1rem
+}
+
+.table {
+  border: 1px white solid;
+  text-align: center;
+  padding: auto;
+
+}

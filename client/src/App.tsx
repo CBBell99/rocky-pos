@@ -1,27 +1,27 @@
-import Navbar from "./components/Navbar";
-import "./App.scss";
-import { seatingTables } from "./assets/data/dummyData";
+import Navbar from './layouts/RootLayout';
+import FloorPlan from './pages/FloorPlan';
+import './App.scss';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Routes,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+import OrderScreen from './pages/OrderScreen';
+import RootLayout from './layouts/RootLayout';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<RootLayout />}>
+      <Route path='' element={<FloorPlan />} />
+      <Route path='order/:tableId' element={<OrderScreen />} />
+    </Route>
+  )
+);
 
 function App() {
-  return (
-    <main>
-      <Navbar />
-      <section>
-        <h2>Select a table</h2>
-
-        <div className="container">
-          <h3>kitchen</h3>
-          <article className="floor-map">
-            {seatingTables.map(table => (
-              <div className="table" key={table.table_id}>
-                TABLE {table.table_id}
-              </div>
-            ))}
-          </article>
-        </div>
-      </section>
-    </main>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
