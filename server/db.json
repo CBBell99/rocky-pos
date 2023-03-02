@@ -1,142 +1,59 @@
 {
-  "seatingTables": [
-    {
-      "table_id": 1,
-      "available_seats": 4
-    },
-    {
-      "table_id": 2,
-      "available_seats": 4
-    },
-    {
-      "table_id": 3,
-      "available_seats": 4
-    },
-    {
-      "table_id": 4,
-      "available_seats": 4
-    },
-    {
-      "table_id": 5,
-      "available_seats": 4
-    },
-    {
-      "table_id": 6,
-      "available_seats": 4
-    },
-    {
-      "table_id": 7,
-      "available_seats": 4
-    },
-    {
-      "table_id": 8,
-      "available_seats": 4
-    },
-    {
-      "table_id": 9,
-      "available_seats": 4
-    }
-  ],
-  "menuItems": [
+  "restaurants": [
     {
       "id": 1,
-      "name": "pork chop",
-      "category": "lunch"
+      "name": "Pasta Palace",
+      "address": "123 Main St",
+      "phone": "555-1234",
+      "tables": [
+        {
+          "table_number": 1,
+          "capacity": 4,
+          "status": "available"
+        },
+        {
+          "table_number": 2,
+          "capacity": 6,
+          "status": "available"
+        }
+      ]
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Spaghetti",
+      "description": "Pasta with tomato sauce",
+      "price": 10.99,
+      "category": "Pasta"
     },
     {
       "id": 2,
-      "name": "power bowl",
-      "category": "lunch"
-    },
+      "name": "Margherita Pizza",
+      "description": "Tomato sauce, mozzarella, basil",
+      "price": 12.99,
+      "category": "Pizza"
+    }
+  ],
+  "orders": [
     {
-      "id": 3,
-      "name": "short rib",
-      "category": "lunch"
-    },
-    {
-      "id": 4,
-      "name": "steak",
-      "category": "lunch"
-    },
-    {
-      "id": 5,
-      "name": "salmon",
-      "category": "lunch"
-    },
-    {
-      "id": 6,
-      "name": "chicken",
-      "category": "lunch"
-    },
-    {
-      "id": 7,
-      "name": "risotto",
-      "category": "lunch"
-    },
-    {
-      "id": 8,
-      "name": "udon bowl",
-      "category": "lunch"
-    },
-    {
-      "id": 9,
-      "name": "udon bowl",
-      "category": "lunch"
-    },
-    {
-      "id": 10,
-      "name": "souffle",
-      "category": "breakfast"
-    },
-    {
-      "id": 11,
-      "name": "eggs benedict",
-      "category": "breakfast"
-    },
-    {
-      "id": 12,
-      "name": "skillet",
-      "category": "breakfast"
-    },
-    {
-      "id": 13,
-      "name": "pancakes",
-      "category": "breakfast"
-    },
-    {
-      "id": 14,
-      "name": "scramble",
-      "category": "breakfast"
-    },
-    {
-      "id": 15,
-      "name": "parfait",
-      "category": "breakfast"
-    },
-    {
-      "id": 16,
-      "name": "avocado toast",
-      "category": "breakfast"
-    },
-    {
-      "id": 17,
-      "name": "oatmeal",
-      "category": "breakfast"
-    },
-    {
-      "id": 18,
-      "name": "souffle",
-      "category": "breakfast"
-    },
-    {
-      "id": 19,
-      "name": "burger",
-      "category": "lunch"
-    },
-    {
-      "id": 20,
-      "name": "pasta",
-      "category": "lunch"
+      "id": 1,
+      "restaurant_id": 1,
+      "table_number": 1,
+      "order_status": "open",
+      "order_date": "2022-03-01T12:30:00Z",
+      "order_items": [
+        {
+          "item_id": 1,
+          "item_name": "Spaghetti",
+          "item_description": "Pasta with tomato sauce",
+          "item_price": 10.99,
+          "item_category": "Pasta",
+          "modifications": []
+        }
+      ],
+      "total_amount": 10.99,
+      "payment_status": "unpaid"
     }
   ]
 }
