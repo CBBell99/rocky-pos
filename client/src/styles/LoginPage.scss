@@ -1,0 +1,9 @@
+.container {
+  border: 1px solid #fff
+}
+
+.num-pad {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:15px;
+}
