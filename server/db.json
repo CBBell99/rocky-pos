@@ -55,5 +55,19 @@
       "total_amount": 10.99,
       "payment_status": "unpaid"
     }
+  ],
+  "employees": [
+    {
+      "firstName": "Trevor",
+      "lastName": "Perri",
+      "pin": 1234,
+      "role": "host"
+    },
+    {
+      "firstName": "Cory",
+      "lastName": "Hudson",
+      "pin": 1111,
+      "role": "line cook"
+    }
   ]
 }

@@ -1,4 +1,4 @@
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/PinPad';
 import Navbar from './components/Navbar';
 function App() {
   return (

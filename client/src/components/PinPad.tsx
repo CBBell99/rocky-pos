@@ -4,9 +4,10 @@ import { useState } from 'react';
 function LoginPage() {
   const [pin, setPin] = useState('');
 
-  const handleButtonClick = digit => {
+  const handleButtonClick = event => {
+    const num = event.target.value;
     if (pin.length < 4) {
-      setPin(pin + digit);
+      setPin(pin + num);
     }
   };
 
@@ -21,7 +22,9 @@ function LoginPage() {
       <h2>Enter your Employee ID</h2>
       <input type='number' value={pin} onKeyDown={handleKeyDown} readOnly />
       <div className='num-pad'>
-        <button onClick={() => handleButtonClick('1')}>1</button>
+        <button onClick={handleButtonClick} value='1'>
+          1
+        </button>
         <button onClick={() => handleButtonClick('2')}>2</button>
         <button onClick={() => handleButtonClick('3')}>3</button>
         <button onClick={() => handleButtonClick('4')}>4</button>
@@ -31,10 +34,10 @@ function LoginPage() {
         <button onClick={() => handleButtonClick('8')}>8</button>
         <button onClick={() => handleButtonClick('9')}>9</button>
         <button onClick={() => setPin('')}>Clear</button>
+        <button onClick={() => handleButtonClick('0')}>0</button>
         <button onClick={() => console.log(`Entered pin: ${pin}`)}>
           Enter
         </button>
-        <button onClick={() => handleButtonClick('0')}>0</button>
       </div>
     </div>
   );
