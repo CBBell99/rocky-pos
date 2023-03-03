@@ -5,7 +5,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:reset": "node bin/resetdb.js"
+    "server": "json-server --watch db.json --port=5005"
   },
   "keywords": [],
   "author": "",
