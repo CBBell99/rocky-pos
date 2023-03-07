@@ -1,9 +1,11 @@
-// import LoginPage from './components/PinPad';
 import Navbar from './components/Navbar';
+import MenuCategoryList from './components/MenuCategoryList';
+
 function App() {
   return (
     <>
       <Navbar />
+      <MenuCategoryList />
     </>
   );
 }
