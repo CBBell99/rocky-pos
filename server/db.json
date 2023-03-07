@@ -19,22 +19,58 @@
       ]
     }
   ],
-  "menu": [
-    {
-      "id": 1,
-      "name": "Spaghetti",
-      "description": "Pasta with tomato sauce",
-      "price": 10.99,
-      "category": "Pasta"
-    },
-    {
-      "id": 2,
-      "name": "Margherita Pizza",
-      "description": "Tomato sauce, mozzarella, basil",
-      "price": 12.99,
-      "category": "Pizza"
-    }
-  ],
+  "menu": {
+    "mains": [
+      {
+        "id": 1,
+        "name": "Spaghetti",
+        "description": "Pasta with tomato sauce",
+        "price": 10.99
+      },
+      {
+        "id": 2,
+        "name": "Margherita Pizza",
+        "description": "Tomato sauce, mozzarella, basil",
+        "price": 12.99
+      },
+      {
+        "id": 3,
+        "name": "Steak w/ Mushroom Demi",
+        "description": "7oz Sirloin served with roasted potatos, seasonal vegtables and mushroom demi",
+        "price": 24.99
+      }
+    ],
+    "breakfast": [
+      {
+        "id": 4,
+        "name": "Soufflé",
+        "description": "Baked with spinach, feta served with roasted potatos",
+        "price": 13
+      },
+      {
+        "id": 5,
+        "name": "Bacon & Eggs",
+        "description": "Eggs any way you like, served with crispy bacon and roasted potatoes",
+        "price": 13
+      }
+    ],
+    "appetizers": [
+      {
+        "id": 6,
+        "name": "Calimari",
+        "description": "Deep fried battered squid, topped with sweet onions and served with tzatziki",
+        "price": 13
+      }
+    ],
+    "desserts": [
+      {
+        "id": 7,
+        "name": "White Chocolate Cheesecake",
+        "description": ""
+      }
+    ]
+  },
+
   "orders": [
     {
       "id": 1,
