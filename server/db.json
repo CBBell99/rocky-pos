@@ -1,109 +1,19 @@
 {
-  "restaurants": [
+  "posts": [
     {
       "id": 1,
-      "name": "Pasta Palace",
-      "address": "123 Main St",
-      "phone": "555-1234",
-      "tables": [
-        {
-          "table_number": 1,
-          "capacity": 4,
-          "status": "available"
-        },
-        {
-          "table_number": 2,
-          "capacity": 6,
-          "status": "available"
-        }
-      ]
+      "title": "json-server",
+      "author": "typicode"
     }
   ],
-  "menu": {
-    "mains": [
-      {
-        "id": 1,
-        "name": "Spaghetti",
-        "description": "Pasta with tomato sauce",
-        "price": 10.99
-      },
-      {
-        "id": 2,
-        "name": "Margherita Pizza",
-        "description": "Tomato sauce, mozzarella, basil",
-        "price": 12.99
-      },
-      {
-        "id": 3,
-        "name": "Steak w/ Mushroom Demi",
-        "description": "7oz Sirloin served with roasted potatos, seasonal vegtables and mushroom demi",
-        "price": 24.99
-      }
-    ],
-    "breakfast": [
-      {
-        "id": 4,
-        "name": "Soufflé",
-        "description": "Baked with spinach, feta served with roasted potatos",
-        "price": 13
-      },
-      {
-        "id": 5,
-        "name": "Bacon & Eggs",
-        "description": "Eggs any way you like, served with crispy bacon and roasted potatoes",
-        "price": 13
-      }
-    ],
-    "appetizers": [
-      {
-        "id": 6,
-        "name": "Calimari",
-        "description": "Deep fried battered squid, topped with sweet onions and served with tzatziki",
-        "price": 13
-      }
-    ],
-    "desserts": [
-      {
-        "id": 7,
-        "name": "White Chocolate Cheesecake",
-        "description": ""
-      }
-    ]
-  },
-
-  "orders": [
+  "comments": [
     {
       "id": 1,
-      "restaurant_id": 1,
-      "table_number": 1,
-      "order_status": "open",
-      "order_date": "2022-03-01T12:30:00Z",
-      "order_items": [
-        {
-          "item_id": 1,
-          "item_name": "Spaghetti",
-          "item_description": "Pasta with tomato sauce",
-          "item_price": 10.99,
-          "item_category": "Pasta",
-          "modifications": []
-        }
-      ],
-      "total_amount": 10.99,
-      "payment_status": "unpaid"
+      "body": "some comment",
+      "postId": 1
     }
   ],
-  "employees": [
-    {
-      "firstName": "Trevor",
-      "lastName": "Perri",
-      "pin": 1234,
-      "role": "host"
-    },
-    {
-      "firstName": "Cory",
-      "lastName": "Hudson",
-      "pin": 1111,
-      "role": "line cook"
-    }
-  ]
+  "profile": {
+    "name": "typicode"
+  }
 }
