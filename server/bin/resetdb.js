@@ -11,10 +11,10 @@ const db = new Client({ connectionString: connectionString });
 
 const runSchemaFiles = async () => {
   console.log('-> Loading Schema Files ...');
-  const schemaFilenames = fs.readdirSync('./db/schema');
+  const schemaFilenames = fs.readdirSync('./db/postgres/schema');
 
   for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./db/schema/${fn}`, 'utf8');
+    const sql = fs.readFileSync(`./db/postgres/schema/${fn}`, 'utf8');
     console.log(`\t-> Running ${fn}`);
     await db.query(sql);
   }
@@ -22,10 +22,10 @@ const runSchemaFiles = async () => {
 
 const runSeedFiles = async () => {
   console.log('-> Loading Seeds ...');
-  const seedFilenames = fs.readdirSync('./db/seeds');
+  const seedFilenames = fs.readdirSync('./db/postgres/seeds');
 
   for (const fn of seedFilenames) {
-    const sql = fs.readFileSync(`./db/seeds/${fn}`, 'utf8');
+    const sql = fs.readFileSync(`./db/postgres/seeds/${fn}`, 'utf8');
     console.log(`\t-> Running ${fn}`);
     await db.query(sql);
   }

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { Pool } = require('pg');
-const dbParams = require('../lib/db.js');
+const dbParams = require('./lib/db');
 
 const app = express();
 const PORT = process.env.PORT || 5005;
