@@ -1,19 +1,16 @@
-require('dotenv').config();
+// require('dotenv').config();
+const { PrismaClient } = require('@prisma/client');
+
+const PORT = process.env.PORT || 5005;
 const express = require('express');
-const { Pool } = require('pg');
-const dbParams = require('./lib/db');
+const prisma = new PrismaClient();
+// const dbParams = require('./lib/db');
 
 const app = express();
-const PORT = process.env.PORT || 5005;
 
-const pool = new Pool(dbParams);
-pool
-  .connect()
-  .then(() => console.log('Connected to Client'))
-  .catch(error => console.error('Error connecting to database', error));
-
-app.get('/menus', (req, res) => {
-  res.send('hello world');
+app.get('/menus', async (req, res) => {
+  const menus = await prisma.menu_categories.findMany();
+  res.json(menus);
 });
 
 app.listen(PORT, () => {
