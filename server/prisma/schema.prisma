@@ -7,50 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model employee {
-  id        Int     @id @default(autoincrement())
-  firstName String? @db.VarChar(30)
-  lastName  String? @db.VarChar(50)
+model employees {
+  id        Int      @id @default(autoincrement())
+  firstName String?  @db.VarChar(30)
+  lastName  String?  @db.VarChar(50)
   role      Role
   passcode  Int?
-  orders    order[]
-  table     table?  @relation(fields: [tableId], references: [id])
+  orders    orders[]
+  table     tables?  @relation(fields: [tableId], references: [id])
   tableId   Int?
 }
 
-model menu_item {
-  id          Int          @id @default(autoincrement())
-  itemName    String       @db.VarChar(255)
-  description String?      @db.VarChar(255)
+model menu_items {
+  id          Int           @id @default(autoincrement())
+  itemName    String        @db.VarChar(255)
+  description String?       @db.VarChar(255)
   price       Int?
   category    Category
-  orderItems  order_item[]
+  orderItems  order_items[]
 }
 
-model order_item {
-  id         Int        @id @default(autoincrement())
+model order_items {
+  id         Int         @id @default(autoincrement())
   orderId    Int?
   menuItemId Int?
-  menuItems  menu_item? @relation(fields: [menuItemId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  orders     order?     @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  menuItems  menu_items? @relation(fields: [menuItemId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orders     orders?     @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model order {
-  id         Int          @id @default(autoincrement())
-  employeeId Int?
+model orders {
+  id         Int           @id @default(autoincrement())
+  employeeId Int
   tableId    Int?
-  createdAt  DateTime?    @default(now()) @db.Timestamp(6)
-  orderItems order_item[]
-  employees  employee?    @relation(fields: [employeeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  tables     table?       @relation(fields: [tableId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  createdAt  DateTime?     @default(now()) @db.Timestamp(6)
+  orderItems order_items[]
+  employees  employees?    @relation(fields: [employeeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  tables     tables?       @relation(fields: [tableId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   guestCount Int?
 }
 
-model table {
-  id        Int        @id @default(autoincrement())
-  available Boolean?   @default(false)
-  orders    order[]
-  employee  employee[]
+model tables {
+  id        Int         @id @default(autoincrement())
+  available Boolean?    @default(false)
+  orders    orders[]
+  employee  employees[]
 }
 
 enum Role {

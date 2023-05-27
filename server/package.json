@@ -6,6 +6,7 @@
   "bin": {
     "server": "bin/resetdb.js"
   },
+  "type": "module",
   "directories": {
     "lib": "lib"
   },
