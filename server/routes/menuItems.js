@@ -36,16 +36,19 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET a menu item
 router.get('/:id', async (req, res) => {
   try {
     const menuItemId = +req.params.id;
     const menuItem = await prisma.menu_items.findUnique({
       where: { id: menuItemId },
     });
+    console.log(menuItem);
 
     if (!menuItem) {
       return res.status(404).json({ error: 'Menu item not found' });
     }
+
     res.status(200).json(menuItem);
   } catch (error) {
     console.error('Error retrieving menu item', error);
@@ -53,30 +56,52 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => { 
+// PATCH an individual menu item
+router.patch('/:id', async (req, res) => {
   try {
-    const menuItemId = +req.params.id
-    const updatedFields = req.body
-
+    const menuItemId = +req.params.id;
+    const updatedFields = req.body;
 
     const menuItem = await prisma.menu_items.findUnique({
-      where: { id: menuItemId }
-    })
+      where: { id: menuItemId },
+    });
 
     if (!menuItem) {
-      return res.status(404).json({ error:"Menu item not found"})
+      return res.status(404).json({ error: 'Menu item not found' });
     }
 
     const updatedMenuItem = await prisma.menu_items.update({
       where: { id: menuItemId },
-      data: updatedFields
-    })
-    res.status(200).json(updatedMenuItem)
+      data: updatedFields,
+    });
+    res.status(200).json(updatedMenuItem);
   } catch (error) {
     console.error('Error updating menu item', error);
     res.status(500).json({ error: 'Internal server error' });
   }
+});
 
-})
+router.delete('/:id', async (req, res) => {
+  try {
+    const menuItemId = +req.params.id;
+
+    const menuItem = await prisma.menu_items.findUnique({
+      where: { id: menuItemId },
+    });
+
+    if (!menuItem) {
+      return res.status(404).json({ error: 'Menu item not found' });
+    }
+
+    await prisma.menu_items.delete({
+      where: { id: menuItemId },
+    });
+
+    res.status(200).json({ message: 'Menu item deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting menu item', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 module.exports = router;
