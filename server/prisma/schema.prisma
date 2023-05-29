@@ -9,13 +9,12 @@ datasource db {
 
 model employees {
   id        Int      @id @default(autoincrement())
-  firstName String?  @db.VarChar(30)
-  lastName  String?  @db.VarChar(50)
+  firstName String   @db.VarChar(30)
+  lastName  String   @db.VarChar(50)
   role      Role
   passcode  Int?
   orders    orders[]
-  table     tables?  @relation(fields: [tableId], references: [id])
-  tableId   Int?
+  tables    tables[]
 }
 
 model menu_items {
@@ -27,30 +26,31 @@ model menu_items {
   orderItems  order_items[]
 }
 
-model order_items {
-  id         Int         @id @default(autoincrement())
-  orderId    Int?
-  menuItemId Int?
-  menuItems  menu_items? @relation(fields: [menuItemId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  orders     orders?     @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
 model orders {
   id         Int           @id @default(autoincrement())
   employeeId Int
   tableId    Int?
   createdAt  DateTime?     @default(now()) @db.Timestamp(6)
   orderItems order_items[]
-  employees  employees?    @relation(fields: [employeeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  tables     tables?       @relation(fields: [tableId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  employees  employees     @relation(fields: [employeeId], references: [id])
+  tables     tables?       @relation(fields: [tableId], references: [id])
   guestCount Int?
+}
+
+model order_items {
+  id         Int        @id @default(autoincrement())
+  orderId    Int
+  menuItemId Int
+  quantity   Int        @default(1)
+  menuItems  menu_items @relation(fields: [menuItemId], references: [id])
+  orders     orders     @relation(fields: [orderId], references: [id])
 }
 
 model tables {
   id        Int         @id @default(autoincrement())
   available Boolean?    @default(false)
+  employees employees[]
   orders    orders[]
-  employee  employees[]
 }
 
 enum Role {
