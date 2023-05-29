@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const { log } = require('console');
 const prisma = new PrismaClient();
 const express = require('express');
 const router = express.Router();
@@ -43,7 +42,6 @@ router.get('/:id', async (req, res) => {
     const menuItem = await prisma.menu_items.findUnique({
       where: { id: menuItemId },
     });
-    console.log(menuItem);
 
     if (!menuItem) {
       return res.status(404).json({ error: 'Menu item not found' });
@@ -74,13 +72,14 @@ router.patch('/:id', async (req, res) => {
       where: { id: menuItemId },
       data: updatedFields,
     });
-    res.status(200).json(updatedMenuItem);
+    res.status(201).json(updatedMenuItem);
   } catch (error) {
     console.error('Error updating menu item', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+// Delete a menu item
 router.delete('/:id', async (req, res) => {
   try {
     const menuItemId = +req.params.id;
