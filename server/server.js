@@ -11,10 +11,12 @@ app.use(morgan('dev'));
 const menuItemRoute = require('../server/routes/menuItems');
 const employeeRoutes = require('../server/routes/employees')
 const tablesRoutes = require('../server/routes/tables')
+const ordersRoutes = require('../server/routes/orders')
 
 app.use('/api/menu', menuItemRoute);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/tables', tablesRoutes);
+app.use('/api/orders', ordersRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
