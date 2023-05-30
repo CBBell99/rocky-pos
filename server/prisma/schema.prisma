@@ -48,7 +48,7 @@ model order_items {
 
 model tables {
   id        Int         @id @default(autoincrement())
-  available Boolean?    @default(false)
+  available Boolean?    @default(true)
   employees employees[]
   orders    orders[]
 }

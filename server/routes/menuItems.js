@@ -60,35 +60,25 @@ router.patch('/:id', async (req, res) => {
     const menuItemId = +req.params.id;
     const updatedFields = req.body;
 
-    const menuItem = await prisma.menu_items.findUnique({
-      where: { id: menuItemId },
-    });
-
-    if (!menuItem) {
-      return res.status(404).json({ error: 'Menu item not found' });
-    }
-
     const updatedMenuItem = await prisma.menu_items.update({
       where: { id: menuItemId },
       data: updatedFields,
     });
-    res.status(201).json(updatedMenuItem);
+
+    res.status(200).json(updatedMenuItem);
   } catch (error) {
     console.error('Error updating menu item', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+
 // Delete a menu item
 router.delete('/:id', async (req, res) => {
   try {
     const menuItemId = +req.params.id;
 
-    const menuItem = await prisma.menu_items.findUnique({
-      where: { id: menuItemId },
-    });
-
-    if (!menuItem) {
+    if (!menuItemId) {
       return res.status(404).json({ error: 'Menu item not found' });
     }
 

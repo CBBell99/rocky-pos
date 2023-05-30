@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// GET an employee
+// GET an employee by id
 router.get('/:id', async (req, res) => {
   try {
     const employeeId = +req.params.id;
