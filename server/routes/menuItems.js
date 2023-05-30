@@ -96,7 +96,7 @@ router.delete('/:id', async (req, res) => {
       where: { id: menuItemId },
     });
 
-    res.status(200).json({ message: 'Menu item deleted successfully' });
+    res.status(204).end()
   } catch (error) {
     console.error('Error deleting menu item', error);
     res.status(500).json({ error: 'Internal server error' });
