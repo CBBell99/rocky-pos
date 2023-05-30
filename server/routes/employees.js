@@ -84,11 +84,9 @@ router.patch('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const employeeId = +req.params.id;
-    const employee = await prisma.employees.findUnique({
-      where: { id: employeeId },
-    });
+  
 
-    if (!employee) {
+    if (!employeeId) {
       res.status(404).json({ error: 'Employee not found' });
     }
 
