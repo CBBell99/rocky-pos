@@ -81,6 +81,7 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
+// DELETE employee by id
 router.delete('/:id', async (req, res) => {
   try {
     const employeeId = +req.params.id;
