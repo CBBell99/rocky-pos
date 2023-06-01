@@ -3,19 +3,23 @@ const prisma = new PrismaClient();
 const express = require('express');
 const router = express.Router();
 
+const employeeController = require('../controllers/employeeController');
+
+
 router.use(express.json());
 
-// GET all employees
-router.get('/', async (req, res) => {
-  try {
-    const employees = await prisma.employees.findMany();
-    res.status(200).json(employees);
-  } catch (error) {
-    console.error('Error retrieving employees', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+router.get('/', employeeController.getAllEmployees);
 
+// GET all employees
+// router.get('/', async (req, res) => {
+//   try {
+//     const employees = await prisma.employees.findMany()
+//     res.status(200).json(employees);
+//   } catch (error) {
+//     console.error('Error retrieving employees', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 // POST an employee
 router.post('/', async (req, res) => {
   try {
