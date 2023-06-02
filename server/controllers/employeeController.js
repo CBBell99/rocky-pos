@@ -50,7 +50,7 @@ const updateEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
     const { firstName, lastName, role, passcode } = req.body;
-    const updatedEmployee = await employeeModel.updateEmployeeById(id, {
+    const updatedEmployee = await employeeModel.updateEmployeeById(+id, {
       firstName,
       lastName,
       role,
