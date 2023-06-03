@@ -9,3 +9,5 @@ router.get('/:id', orders.getOrderById);
 router.post('/', orders.createNewOrder);
 router.patch('/:id', orders.updateOrdersById);
 router.delete('/:id', orders.deleteOrderById);
+
+module.exports = router;
