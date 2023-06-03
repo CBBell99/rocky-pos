@@ -19,3 +19,6 @@ Will start the local dev environment on http://localhost:5005 or what you have y
 
 You can test the endpoints using Postman, Insominia, or the RESTED Chrome extension.
 
+## Additional Info
+
+As of right now, the api only has basic CRUD functionality for orders, employees, menu items, and tables.  Features like sales aggregation will be added in the future
