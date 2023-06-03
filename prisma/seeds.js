@@ -15,6 +15,7 @@ const seed = async () => {
         { firstName: 'John', lastName: 'Doe', role: 'HOST' },
         { firstName: 'Jane', lastName: 'Smith', role: 'KITCHEN' },
         { firstName: 'Admin', lastName: 'User', role: 'ADMIN' },
+        { firstName: 'Michael', lastName: 'Johnson', role: 'HOST' },
       ],
     });
 
@@ -47,8 +48,36 @@ const seed = async () => {
 
     const orders = await prisma.orders.createMany({
       data: [
-        { employeeId: 1, tableId: 1, guestCount: 2 },
-        { employeeId: 1, tableId: 3, guestCount: 4 },
+        {
+          employeeId: 1,
+          tableId: 1,
+          guestCount: 2,
+          createdAt: new Date('2023-05-01T10:00:00Z'),
+        },
+        {
+          employeeId: 1,
+          tableId: 3,
+          guestCount: 4,
+          createdAt: new Date('2023-05-01T12:30:00Z'),
+        },
+        {
+          employeeId: 4,
+          tableId: 2,
+          guestCount: 3,
+          createdAt: new Date('2023-05-02T09:15:00Z'),
+        },
+        {
+          employeeId: 1,
+          tableId: 1,
+          guestCount: 2,
+          createdAt: new Date('2023-05-03T11:45:00Z'),
+        },
+        {
+          employeeId: 4,
+          tableId: 3,
+          guestCount: 5,
+          createdAt: new Date('2023-05-03T18:30:00Z'),
+        },
       ],
     });
 
@@ -58,8 +87,15 @@ const seed = async () => {
         { orderId: 1, menuItemId: 2 },
         { orderId: 2, menuItemId: 2 },
         { orderId: 2, menuItemId: 3 },
+        { orderId: 3, menuItemId: 1 },
+        { orderId: 3, menuItemId: 3 },
+        { orderId: 4, menuItemId: 1 },
+        { orderId: 4, menuItemId: 2 },
+        { orderId: 5, menuItemId: 2 },
+        { orderId: 5, menuItemId: 3 },
       ],
     });
+
     console.log('Seed data inserted successfully.');
   } catch (error) {
     console.error('Error inserting seed data:', error);
