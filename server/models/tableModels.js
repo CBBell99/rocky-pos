@@ -10,15 +10,15 @@ const createNewTable = async data => {
 };
 
 const getTableById = async id => {
-  return await prisma.menu_items.findUnique({ where: { id } });
+  return await prisma.tables.findUnique({ where: { id } });
 };
 
 const updateTableById = async (id, data) => {
-  return await prisma.menu_items.update({ where: { id }, data });
+  return await prisma.tables.update({ where: { id }, data });
 };
 
 const deleteTableById = async id => {
-  return await prisma.menu_items.delete({ where: { id } });
+  return await prisma.tables.delete({ where: { id } });
 };
 module.exports = {
   getAllTables,
