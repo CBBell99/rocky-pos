@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const menuItems = require('../controllers/menuItemController')
 
-router.use(express.json());
-
 router.get('/', menuItems.getAllMenuItems);
 router.post('/', menuItems.createMenuItem);
 router.get('/:id', menuItems.getMenuItemById);
