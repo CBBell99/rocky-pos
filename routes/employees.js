@@ -3,7 +3,7 @@ const router = express.Router();
 
 const employeeController = require('../controllers/employeeController');
 
-router.use(express.json());
+// router.use(express.json());
 
 router.get('/', employeeController.getAllEmployees);
 router.get('/:id', employeeController.getEmployeeById);

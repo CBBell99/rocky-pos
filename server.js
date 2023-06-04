@@ -17,7 +17,7 @@ app.use('/api/menu', menuItemRoute);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/tables', tablesRoutes);
 app.use('/api/orders', ordersRoutes);
-app.use('/api/orders', orderItemsRoutes);
+app.use('/api/orderItems', orderItemsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

@@ -1,8 +1,8 @@
-const orders = require('../models/orderModels');
+const orderModels = require('../models/orderModels');
 
 const getAllOrders = async (req, res) => {
   try {
-    const orders = await orders.getAllOrders();
+    const orders = await orderModels.getAllOrders();
     res.status(200).json(orders);
   } catch (error) {
     console.error('Error retrieving orders:', error);
@@ -13,7 +13,7 @@ const getAllOrders = async (req, res) => {
 const getOrderById = async (req, res) => {
   try {
     const { id } = req.params;
-    const order = await orders.getOrderById(+id);
+    const order = await orderModels.getOrderById(+id);
     res.status(200).json(order);
   } catch (error) {
     console.error('Error retrieving order', error);
@@ -24,7 +24,7 @@ const getOrderById = async (req, res) => {
 const createNewOrder = async (req, res) => {
   try {
     const { itemName, description, price, category } = req.body;
-    const order = await orders.createNewOrder({
+    const order = await orderModels.createNewOrder({
       itemName,
       description,
       price,
@@ -40,7 +40,7 @@ const updateOrderById = async (req, res) => {
   try {
     const { id } = req.params;
     const { itemName, description, price, category } = req.body;
-    const updatedOrder = await orders.updateOrderById(+id, {
+    const updatedOrder = await orderModels.updateOrderById(+id, {
       itemName,
       description,
       price,
@@ -56,7 +56,7 @@ const updateOrderById = async (req, res) => {
 const deleteOrderById = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedMenuItem = await orders.deleteOrderById(+id);
+    const deletedMenuItem = await orderModels.deleteOrderById(+id);
     res.status(200).json(deletedMenuItem);
   } catch (error) {
     console.error('Error deleting table:', error);
