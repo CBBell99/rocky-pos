@@ -5,6 +5,10 @@ const getAllTables = async () => {
   return await prisma.tables.findMany();
 };
 
+const getAvailableTables = async () => { 
+  return await prisma.tables.findMany({ where: { status: 'available' } });
+}
+
 const createNewTable = async data => {
   return await prisma.tables.create({ data });
 };

@@ -1,5 +1,6 @@
 const employeeModel = require('../models/employeeModels');
 
+
 // GET all employees
 const getAllEmployees = async (req, res) => {
   try {
@@ -49,13 +50,16 @@ const getEmployeeById = async (req, res) => {
 const updateEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { firstName, lastName, role, passcode } = req.body;
+    const { firstName, lastName, role, passcode } = req.body || {};
+    console.log('id', req.params);
+    console.log('req.body', req.body);
     const updatedEmployee = await employeeModel.updateEmployeeById(+id, {
       firstName,
       lastName,
       role,
       passcode,
     });
+    console.log(updatedEmployee);
     res.status(200).json(updatedEmployee);
   } catch (error) {
     console.error({ error: 'Error updating employee', error });

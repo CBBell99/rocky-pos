@@ -1,11 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
 app.use(morgan('dev'));
+app.use(cors());
 
 const menuItemRoute = require("./routes/menuItems");
 const employeeRoutes = require('./routes/employees')
