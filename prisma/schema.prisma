@@ -12,7 +12,9 @@ model employees {
   firstName String   @db.VarChar(30)
   lastName  String   @db.VarChar(50)
   role      Role
-  passcode  Int?
+  // make unique
+    passcode  Int?
+    // email? password? for admin only
   orders    orders[]
   tables    tables[]
 }

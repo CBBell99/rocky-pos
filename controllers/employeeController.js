@@ -1,27 +1,24 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
 const employeeModel = require('../models/employeeModels');
 
 // POST log in admin/restaurant
 const adminLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const admin = await prisma.employees.findFirst({
-      where: {
-        email: email,
-      },
-    });
+    const admin = await employeeModel.findAdminByEmail(email);
     if (!admin) {
       res.status(404).json({ message: 'User email not found' });
-    }
-    if (admin && admin.email === email) {
-      res.status(200).json({ message: 'Successfully logged in' });
+    } else if (admin.password !== password) {
+      res.status(400).json({ message: 'Password does not match email' });
+    } else {
+      res.status(200).json({ message: 'Admin successfully logged in' });
     }
   } catch (error) {
     console.error('Error logging in as admin', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
 
 // GET all employees
 const getAllEmployees = async (req, res) => {
