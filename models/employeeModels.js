@@ -35,4 +35,5 @@ module.exports = {
   getEmployeeById,
   updateEmployeeById,
   deleteEmployeeById,
+  findEmployeeByPIN
 };

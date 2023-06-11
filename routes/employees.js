@@ -7,7 +7,8 @@ router.use(express.json());
 
 router.get('/', employeeController.getAllEmployees);
 router.post('/', employeeController.createNewEmployee);
-router.post('/login', employeeController.adminLogin)
+router.post('/admin/login', employeeController.adminLogin)
+router.post('/login', employeeController.employeeLogin)
 router.get('/:id', employeeController.getEmployeeById);
 router.patch('/:id', employeeController.updateEmployeeById);
 router.delete('/:id', employeeController.deleteEmployeeById);
