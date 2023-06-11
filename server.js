@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(morgan('dev'));
 app.use(cors());
+app.use(express.json())
 
 const menuItemRoute = require("./routes/menuItems");
 const employeeRoutes = require('./routes/employees')
