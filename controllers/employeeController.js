@@ -18,7 +18,22 @@ const adminLogin = async (req, res) => {
   }
 };
 
-
+// POST log in employee
+const employeeLogin = async (req, res) => {
+  try {
+    const { pin } = req.body;
+    const employee = await employeeModel.findEmployeeByPIN(pin);
+    if (!employee) {
+      res.status(404).json({ message: 'Employee does not exist' });
+    }
+    if (pin === employee.pin) {
+      res.status(200).json({ message: 'Employee login sucessfull', employee });
+    }
+  } catch (error) {
+    console.log('Error logging employee in ', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 // GET all employees
 const getAllEmployees = async (req, res) => {
@@ -105,4 +120,5 @@ module.exports = {
   getEmployeeById,
   updateEmployeeById,
   deleteEmployeeById,
+  employeeLogin,
 };
