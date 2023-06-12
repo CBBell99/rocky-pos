@@ -21,6 +21,23 @@ const getMenuItemById = async (req, res) => {
   }
 };
 
+const getMenuItemsByCategory = async (req, res) => {
+  try {
+    const { category } = req.params;
+
+    if (category) {
+      const menu = await menuItems.getMenuItemsByCategory(category);
+      res.status(200).json(menu);
+    } else {
+      const allMenuItems = await menuItems.getAllMenuItems();
+      res.status(200).json(allMenuItems);
+    }
+  } catch (error) {
+    console.error('Error retrieving menu items:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 const createMenuItem = async (req, res) => {
   try {
     const { itemName, description, price, category } = req.body;
@@ -70,5 +87,6 @@ module.exports = {
   getMenuItemById,
   createMenuItem,
   updateMenuItemById,
-  deleteMenuItemById
+  deleteMenuItemById,
+  getMenuItemsByCategory
 };

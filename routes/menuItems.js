@@ -7,5 +7,6 @@ router.post('/', menuItems.createMenuItem);
 router.get('/:id', menuItems.getMenuItemById);
 router.patch('/:id', menuItems.updateMenuItemById);
 router.delete('/:id', menuItems.deleteMenuItemById);
+router.get('/category/:category', menuItems.getMenuItemsByCategory)
 
 module.exports = router;

@@ -33,6 +33,8 @@ const searchEmployees = async (query) => {
   return employees
 }
 
+
+
 const updateEmployeeById = async (id, data) => {
   return await prisma.employees.update({ where: { id }, data });
 };
