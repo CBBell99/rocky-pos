@@ -1,10 +1,10 @@
-const employeeModel = require('../models/employeeModels');
+const employees = require('../models/employeeModels');
 
 // POST log in admin/restaurant
 const adminLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const admin = await employeeModel.findAdminByEmail(email);
+    const admin = await employees.findAdminByEmail(email);
     if (!admin) {
       res.status(404).json({ message: 'User email not found' });
     } else if (admin.password !== password) {
@@ -18,11 +18,20 @@ const adminLogin = async (req, res) => {
   }
 };
 
+// POST search employees by name
+const searchEmployees = async (req, res) => {
+  try {
+    const { query } = req.query;
+    const searchResults = await employees.searchEmployees(query);
+    res.status(200).json(searchResults);
+  } catch (error) {}
+};
+
 // POST log in employee
 const employeeLogin = async (req, res) => {
   try {
     const { pin } = req.body;
-    const employee = await employeeModel.findEmployeeByPIN(pin);
+    const employee = await employees.findEmployeeByPIN(pin);
     if (!employee) {
       res.status(404).json({ message: 'Employee does not exist' });
     }
@@ -38,7 +47,7 @@ const employeeLogin = async (req, res) => {
 // GET all employees
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await employeeModel.getAllEmployees();
+    const employees = await employees.getAllEmployees();
     res.status(200).json(employees);
   } catch (error) {
     console.error('Error retrieving employees', error);
@@ -56,7 +65,7 @@ const createNewEmployee = async (req, res) => {
       role,
       passcode,
     };
-    const employee = await employeeModel.createEmployee(employeeData);
+    const employee = await employees.createEmployee(employeeData);
     res.status(201).json(employee);
   } catch (error) {
     console.error('Error creating employee', error);
@@ -68,7 +77,7 @@ const createNewEmployee = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
-    const employee = await employeeModel.getEmployeeById(+id);
+    const employee = await employees.getEmployeeById(+id);
     if (employee) {
       res.status(200).json(employee);
     } else {
@@ -84,16 +93,31 @@ const getEmployeeById = async (req, res) => {
 const updateEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { firstName, lastName, role, passcode } = req.body || {};
-    console.log('id', req.params);
-    console.log('req.body', req.body);
-    const updatedEmployee = await employeeModel.updateEmployeeById(+id, {
-      firstName,
-      lastName,
-      role,
-      passcode,
+    const { firstName, lastName, role, pin, email, password } = req.body || {};
+    const updateData = {};
+
+    if (firstName) {
+      updateData.firstName = firstName;
+    }
+    if (lastName) {
+      updateData.lastName = lastName;
+    }
+    if (role) {
+      updateData.role = role;
+    }
+    if (pin) {
+      updateData.pin = pin;
+    }
+    if (email) {
+      updateData.email = email;
+    }
+    if (password) {
+      updateData.password = password;
+    }
+
+    const updatedEmployee = await employees.updateEmployeeById(+id, {
+      updateData,
     });
-    console.log(updatedEmployee);
     res.status(200).json(updatedEmployee);
   } catch (error) {
     console.error({ error: 'Error updating employee', error });
@@ -105,7 +129,7 @@ const updateEmployeeById = async (req, res) => {
 const deleteEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
-    await employeeModel.deleteEmployeeById(+id);
+    await employees.deleteEmployeeById(+id);
     res.status(200).end();
   } catch (error) {
     console.error('Error deleting employee', error);
@@ -121,4 +145,5 @@ module.exports = {
   updateEmployeeById,
   deleteEmployeeById,
   employeeLogin,
+  searchEmployees,
 };

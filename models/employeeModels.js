@@ -21,6 +21,18 @@ const findEmployeeByPIN = async pin => {
   return await prisma.employees.findFirst({ where: { pin: pin } });
 };
 
+const searchEmployees = async (query) => {
+  const employees = await prisma.employees.findMany({
+    where: {
+      OR: [
+        { firstName: {contains: query, mode:'insensitive'}},
+        { lastName: {contains: query, mode:'insensitive'}}
+      ]
+    }
+  })
+  return employees
+}
+
 const updateEmployeeById = async (id, data) => {
   return await prisma.employees.update({ where: { id }, data });
 };
@@ -35,5 +47,6 @@ module.exports = {
   getEmployeeById,
   updateEmployeeById,
   deleteEmployeeById,
-  findEmployeeByPIN
+  findEmployeeByPIN,
+  searchEmployees
 };
