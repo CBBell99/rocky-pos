@@ -1,7 +1,7 @@
 # Tracks POS api
 
 Tracks POS api is a simple api to manage the products and orders of a restaurant.  As of now, it is a work in progress.  More features will be added in the future.
-Tracks POS api is built with Node.js, Express, and Postgres.
+Tracks POS api is built with Node.js, Express, Prisma, and Postgres.
 
 ## Installation
 

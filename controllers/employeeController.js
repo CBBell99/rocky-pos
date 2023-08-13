@@ -116,7 +116,7 @@ const updateEmployeeById = async (req,  res) => {
     }
 
     const updatedEmployee = await employees.updateEmployeeById(+id, {
-      updateData,
+      ...updateData,
     });
     return res.status(200).json(updatedEmployee);
   } catch (error) {

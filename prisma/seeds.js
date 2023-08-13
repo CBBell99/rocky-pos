@@ -43,7 +43,18 @@ const seed = async () => {
     });
 
     const tables = await prisma.tables.createMany({
-      data: [{ available: true }, { available: false }, { available: true }],
+      data: [
+        { available: true },
+        { available: true },
+        { available: true },
+        { available: true },
+        { available: false },
+        { available: false },
+        { available: false },
+        { available: false },
+        { available: false },
+        { available: false },
+      ],
     });
 
     const orders = await prisma.orders.createMany({
