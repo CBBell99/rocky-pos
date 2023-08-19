@@ -19,7 +19,7 @@ Will start the local dev environment on http://localhost:5005 or what you have y
 
 ```npm run db:reset```
 
-This command will seed data into the database.  It will also drop all tables and recreate them.  If you need to reset the database, you will need to reset the sequence in psql with the following command: 
+This command will seed data into the database.  It will also drop all tables and recreate them.  If you need to reset the database, you will need to reset the sequence in psql with the following command before running the seed command.: 
 
 ```ALTER SEQUENCE order_items_id_seq RESTART WITH 1;
 ALTER SEQUENCE orders_id_seq RESTART WITH 1;

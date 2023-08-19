@@ -7,62 +7,115 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model employees {
-  id        Int      @id @default(autoincrement())
-  firstName String   @db.VarChar(30)
-  lastName  String   @db.VarChar(50)
-  role      Role
-  // make unique
-    passcode  Int?
-    // email? password? for admin only
-  orders    orders[]
-  tables    tables[]
-}
-
-model menu_items {
-  id          Int           @id @default(autoincrement())
-  itemName    String        @db.VarChar(255)
-  description String?       @db.VarChar(255)
-  price       Int?
-  category    Category
-  orderItems  order_items[]
-}
-
-model orders {
-  id         Int           @id @default(autoincrement())
-  employeeId Int
-  tableId    Int?
-  createdAt  DateTime?     @default(now()) @db.Timestamp(6)
-  orderItems order_items[]
-  employees  employees     @relation(fields: [employeeId], references: [id])
-  tables     tables?       @relation(fields: [tableId], references: [id])
-  guestCount Int?
-}
-
-model order_items {
-  id         Int        @id @default(autoincrement())
-  orderId    Int
-  menuItemId Int
-  quantity   Int        @default(1)
-  menuItems  menu_items @relation(fields: [menuItemId], references: [id])
-  orders     orders     @relation(fields: [orderId], references: [id])
-}
-
-model tables {
-  id        Int         @id @default(autoincrement())
-  available Boolean?    @default(true)
-  employees employees[]
-  orders    orders[]
-}
-
-enum Role {
+// Represents different roles an employee can have
+enum EmployeeRole {
   HOST
   KITCHEN
   ADMIN
 }
 
-enum Category {
-  BREAKFAST
-  LUNCH
-  DESSERT
+// Represents different modification types for menu items
+enum ModificationType {
+  ADD
+  REMOVE
+  EXTRA
+  SUBSTITUTE
+}
+
+model MenuItem {
+  id            Int           @id @default(autoincrement())
+  name          String
+  description   String?
+  price         Float
+  category      String
+  availability  Boolean
+  orders        OrderItem[]
+}
+
+model Order {
+  id             Int           @id @default(autoincrement())
+  orderDate      DateTime
+  tableNumber    Int
+  status         String        // Possible values: Open, Closed
+  totalAmount    Float
+  orderItems     OrderItem[]
+  transactions   Transaction[]
+  kitchenOrders  KitchenOrder[] // Add this line for the KitchenOrder relationship
+  barOrders      BarOrder[]     // Add this line for the BarOrder relationship
+}
+
+model OrderItem {
+  id              Int           @id @default(autoincrement())
+  quantity        Int
+  subtotal        Float
+  menuItem        MenuItem      @relation(fields: [menuItemId], references: [id])
+  menuItemId      Int
+  order           Order         @relation(fields: [orderId], references: [id])
+  orderId         Int
+  modifications   Modification[]
+}
+
+model Modification {
+  id              Int           @id @default(autoincrement())
+  modificationType ModificationType
+  modificationDesc String
+  priceAdjustment Float
+  orderItem       OrderItem     @relation(fields: [orderItemId], references: [id])
+  orderItemId     Int
+}
+
+model Employee {
+  id              Int           @id @default(autoincrement())
+  firstName       String        // Added firstName field
+  lastName        String        // Added lastName field
+  role            EmployeeRole  // Possible values: EMPLOYEE, ADMIN
+  email           String?        @unique
+  hashedPassword  String?
+}
+
+model Table {
+  tableNumber     Int           @id
+  capacity        Int
+  status          String        // Possible values: Occupied, Available, Reserved
+}
+
+model Transaction {
+  id              Int           @id @default(autoincrement())
+  transactionDate DateTime
+  paymentMethod   String
+  totalAmount     Float
+  tip             Float
+  order           Order         @relation(fields: [orderId], references: [id])
+  orderId         Int
+  payments        Payment[]
+}
+
+enum PaymentType {
+  CASH
+  CARD
+}
+
+model Payment {
+  id              Int           @id @default(autoincrement())
+  paymentAmount   Float
+  paymentDate     DateTime
+  paymentType     PaymentType   // Possible values: CASH, CARD
+  transaction     Transaction   @relation(fields: [transactionId], references: [id])
+  transactionId   Int
+}
+
+model KitchenOrder {
+  id              Int           @id @default(autoincrement())
+  status          String        // Possible values: Pending, In Progress, Completed
+  timestamp       DateTime
+  order           Order         @relation(fields: [orderId], references: [id])
+  orderId         Int
+}
+
+model BarOrder {
+  id              Int           @id @default(autoincrement())
+  status          String        // Possible values: Pending, In Progress, Completed
+  timestamp       DateTime
+  order           Order         @relation(fields: [orderId], references: [id])
+  orderId         Int
 }
